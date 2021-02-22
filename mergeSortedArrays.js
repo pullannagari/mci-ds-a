@@ -7,8 +7,8 @@
 //time vs space complexity
 
 function mergeSortArray(){
-  const arr1 = [0,3,4, 30]
-  const arr2 = [4,6,10, 12,13]
+  const arr1 = [0,3,4, 30, 31, 33, 36]
+  const arr2 = [4,6,10, 12,13, 40, 41, 43, 44]
 
   let finalArray = []
   let p = 0; q = 0;
@@ -19,7 +19,7 @@ function mergeSortArray(){
         console.log(`inside p ${p}`);
         finalArray.push(arr1[p]);
         p++;
-      }else{
+      }else {
         console.log(`inside q ${q}`);
         finalArray.push(arr2[q]);
         q++;
