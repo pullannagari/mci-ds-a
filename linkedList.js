@@ -10,13 +10,74 @@ class LinkedList{
   }
 
   append(value){
-    let newNode = {
+    const newNode = {
       value : value,
       next : null
-    }
+    };
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
+    return this;
+  }
+
+  prepend(value){
+    const newNode = {
+      value : value,
+      next : this.head
+    };
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
+
+  insert(index, value){
+    let i = 0;
+    if(index == 0){
+      this.prepend(value);
+    }else if(index >= this.length-1){
+      this.append(value);
+    }else{
+      //traverse to the node where index is index-1
+      let prevIndexNode = this.traverseToIndex(index-1);
+      const newNode = {
+            value : value,
+            next : prevIndexNode.next
+          };
+          prevIndexNode.next = newNode;
+    } 
+    return this;
+  }
+
+  remove(index){
+    let i = 0;
+    if(index == 0){
+      this.head = this.head.next;
+    }else if(index >= this.length-1){
+      return undefined;
+    }else{
+      //traverse to the node where index is index-1
+      let indexNode = this.traverseToIndex(index);
+      let prevNode = this.traverseToIndex(index-1);
+      console.log(indexNode);
+      console.log(prevNode)
+      prevNode.next = indexNode.next;
+    } 
+    return this;
+  }
+
+  traverseToIndex(index){
+    let node = this.head, i=0;
+    if(index <= (this.length-1)){
+      while(i <= index){
+        if(i < (index)){
+          node = node.next;
+        }else if(i==(index)){
+          return node;
+        }
+        i++;
+      }
+      return node;
+    }
   }
 
   traverseAll(){
@@ -37,4 +98,12 @@ class LinkedList{
 const myLinkedList = new LinkedList(100);
 myLinkedList.append(200);
 myLinkedList.append(300);
+myLinkedList.prepend(50);
+myLinkedList.prepend(25);
+myLinkedList.insert(4,222);
+myLinkedList.insert(3,222);
+myLinkedList.insert(6,333);
+myLinkedList.remove(1);
+myLinkedList.remove(0);
+myLinkedList.remove(5);
 console.log(myLinkedList.traverseAll());
