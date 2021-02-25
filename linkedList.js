@@ -43,8 +43,9 @@ class LinkedList{
             value : value,
             next : prevIndexNode.next
           };
-          prevIndexNode.next = newNode;
-    } 
+      prevIndexNode.next = newNode;
+      this.length++; 
+    }
     return this;
   }
 
@@ -52,15 +53,20 @@ class LinkedList{
     let i = 0;
     if(index == 0){
       this.head = this.head.next;
-    }else if(index >= this.length-1){
+      this.length--;
+      return this;
+    }else if(index >= this.length){
+      console.log('cannot delete');
       return undefined;
-    }else{
+     }else{
       //traverse to the node where index is index-1
-      let indexNode = this.traverseToIndex(index);
+      console.log(' delete');
       let prevNode = this.traverseToIndex(index-1);
+      let indexNode = prevNode.next;
       console.log(indexNode);
       console.log(prevNode)
       prevNode.next = indexNode.next;
+      this.length--;
     } 
     return this;
   }
@@ -103,7 +109,5 @@ myLinkedList.prepend(25);
 myLinkedList.insert(4,222);
 myLinkedList.insert(3,222);
 myLinkedList.insert(6,333);
-myLinkedList.remove(1);
-myLinkedList.remove(0);
-myLinkedList.remove(5);
+myLinkedList.remove(7);
 console.log(myLinkedList.traverseAll());
