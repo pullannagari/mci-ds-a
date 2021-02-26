@@ -4,3 +4,4 @@
 //require('./hashTable.js');
 //require('./reccuringElement.js');
 require('./linkedList.js');
+//require('./doubleLinkedList.js');
