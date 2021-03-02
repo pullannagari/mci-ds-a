@@ -100,6 +100,25 @@ class LinkedList{
     return values;
   }
 
+//reverse returning a existing LL
+  reverseSame(){
+    if(this.length==1){
+      return this.head;
+    }
+    let first = this.head;
+    let second = this.head.next;
+    while(second){
+      let temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this;
+  }
+
+//reverse returning a new LL
   reverse(){
     let revList = new LinkedList(this.head.value);
     let currNode = this.head, i = 1;
@@ -121,11 +140,7 @@ class LinkedList{
 const myLinkedList = new LinkedList(100);
 myLinkedList.append(200);
 myLinkedList.append(300);
-myLinkedList.prepend(50);
-myLinkedList.prepend(25);
-myLinkedList.insert(4,222);
-myLinkedList.insert(3,222);
-myLinkedList.insert(6,333);
-myLinkedList.remove(7);
+myLinkedList.append(400);
 console.log(myLinkedList.traverseAll(myLinkedList));
-console.log(myLinkedList.traverseAll(myLinkedList.reverse()));
+//console.log(myLinkedList.traverseAll(myLinkedList.reverse()));
+console.log(myLinkedList.traverseAll(myLinkedList.reverseSame()));
