@@ -5,4 +5,7 @@
 //require('./reccuringElement.js');
 //require('./linkedList.js');
 //require('./doubleLinkedList.js');
-require('./stack.js');
+//require('./revstack.js');
+//require('./stack.js');
+//require('./stackUsingArray.js');
+require('./queue.js');

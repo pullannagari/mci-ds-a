@@ -1,7 +1,3 @@
-//stack is a data type which follows LIFO
-//common methods of a stack are peek push and pop 
-//here stack is implemented using a linked list
-
 class Node{
   constructor(value){
     this.value = value;
@@ -12,61 +8,44 @@ class Node{
 class Stack{
   constructor(value){
     const node = new Node(value);
-    this.head = node;
-    this.tail = node;
+    this.top = node;
     this.length = 1;
   }
 
   peek(){
-    return this.head;
+    return this.top.value;
   }
 
   push(value){
     const newNode = new Node(value);
-    if(this.head != null){
-      this.head.next = newNode;
-      this.head = newNode;
-      this.length++;
+    if( this.top == null || this.top == undefined ){
+      this.top = newNode;
+      this.length = 1;
     }else{
-      this.head = newNode;
+      const temp = this.top;
+      this.top = newNode;
+      newNode.next = temp;
       this.length++;
     }
     return this;
   }
 
   pop(){
-    if(this.head == null){
-      return undefined;
-    }else{
-      if(this.length==1){
-        const currHead = this.head;
-        this.head = null;
-        this.tail = null;
-        this.length--;
-        return currHead;
-      }
-      const headminusOne = this._traverse(this.length-2);
-      const currHead = this.head;
-      headminusOne.next = null;
-      this.head = headminusOne;
+    if(this.length == 1){
+      //console.log('length one');
+      const currNode = this.top;
+      this.top = null;
       this.length--;
-      return currHead;
+      //console.log(currNode);
+      return currNode.value;
+    }else{
+      const currNode = this.top;
+      this.top = this.top.next;
+      this.length--;
+      return currNode.value;
     }
   }
 
-  _traverse(index){
-    let currNode = this.tail, i = 0;
-    if(index == 0){
-      return currNode;
-    }
-    while(currNode.next!=null){
-      if(index == i){
-        return currNode;
-      }
-      currNode = currNode.next;
-      i++;
-    }
-  }
 }
 
 const myStack = new Stack('a');
@@ -76,5 +55,8 @@ console.log(myStack.peek());
 console.log(myStack.pop());
 console.log(myStack.peek());
 console.log(myStack.pop());
+console.log(myStack.peek());
+console.log(myStack.pop());
+myStack.push('d')
 console.log(myStack.peek());
 console.log(myStack.pop());
