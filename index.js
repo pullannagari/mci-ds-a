@@ -8,4 +8,5 @@
 //require('./revstack.js');
 //require('./stack.js');
 //require('./stackUsingArray.js');
-require('./queue.js');
+//require('./queue.js');
+require('./binarySearchTree.js');
